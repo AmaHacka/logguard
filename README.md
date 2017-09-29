@@ -1,12 +1,32 @@
 # Logguard
 Python log archiver util that allows to store logs in Apache/Nginx manner.
 
-# Usage
-log_guard.py **_[-h] [-i INFILE] [-l LOGDIR]_**
+### Usage
 
-optional arguments:<br>
-  **_-h, --help_**            show this help message and exit<br>
-  **_-i INFILE, --infile INFILE_** Name of logfile<br>
-  **_-l LOGDIR, --logdir LOGDIR_** Directory where logs should be stored
+```
+Usage: python logguard.py [options]
+Options:
+  -h                Display help message
+  -i, --infile      File to archive and clean
+  -l, --logdir      Directory to store archive
+```
 
-You can add this sctipt to crontab.
+### Usage example
+```
+python log_guard.py -i server_info.log -l /logs
+
+Crontab example:
+0 4 * * * python /path_to_script/log_guard.py -i /path_to_logfile/server_info.log -l /path_to_arhives/logs
+```
+
+### Results
+```
+\logs
+    -logfile.log
+    -0server.log.tar.gz
+    -1server.log.tar.gz
+    -2server.log.tar.gz
+    -3server.log.tar.gz
+    ...
+```
+
